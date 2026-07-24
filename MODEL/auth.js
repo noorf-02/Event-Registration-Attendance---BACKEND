@@ -17,7 +17,6 @@ const authSchema = new Schema ({
         type:String,
         required:true, 
         minlenght:8,
-        maxlength:20
     }
 });
 
