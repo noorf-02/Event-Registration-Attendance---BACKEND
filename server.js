@@ -6,9 +6,10 @@ const port = process.env.PORT;
 const cors = require('cors');
 const connectDB = require('./DATABASE CONNECTION/DBconnection');
 connectDB();
+const router = require('./VIEW/auth');
 
-// app.use(router()); 
 app.use(express.json());
+app.use(router); 
 app.use(cors());
 
 app.get('/',(req,res)=>{
