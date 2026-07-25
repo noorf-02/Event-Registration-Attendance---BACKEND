@@ -8,9 +8,9 @@ const connectDB = require('./DATABASE CONNECTION/DBconnection');
 connectDB();
 const router = require('./VIEW/auth');
 
+app.use(cors());
 app.use(express.json());
 app.use(router); 
-app.use(cors());
 
 app.get('/',(req,res)=>{
     res.send('This is my Homepage')

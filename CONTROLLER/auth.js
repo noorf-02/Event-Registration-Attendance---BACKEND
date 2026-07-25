@@ -3,7 +3,8 @@ const auth = require('../MODEL/auth');
 const bcrypt = require('bcryptjs');
 
 const signUp = async (req,res)=>{
-    const { username, email,password } = req.body;
+    try{
+        const { username, email,password } = req.body;
     const existingUser = await auth.findOne({email});
     const existingName = await auth.findOne({username});
 
@@ -25,11 +26,20 @@ const signUp = async (req,res)=>{
         msg:"User successfully created",
         User: signedUp
     })
+    } catch(error){
+        console.log("Sign Up Failed",erro);
+        res.status(500).json({
+            msg:"Something went wrong during signup",
+            error:error
+        })
+    }
+    
 
 };
 
 const logIn = async (req,res)=>{
-    const { username, password } = req.body;
+    try{
+        const { username, password } = req.body;
     const existingUser = await auth.findOne({username});
     if(!existingUser){
         res.status(400).json({
@@ -48,6 +58,14 @@ const logIn = async (req,res)=>{
         msg:"User logged In",
         loggedIn:existingUser
     });
+    } catch(error){
+        console.log("Something went wrog during log in");
+        res.status(500).json({
+            msg:"Log In failed",
+            error: error
+        })
+    }
+    
 
 };
 
