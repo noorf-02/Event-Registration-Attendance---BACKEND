@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const signUp = async (req,res)=>{
     try{
-        const { username, email,password } = req.body;
+        const { username, email,password,role } = req.body;
     const existingUser = await auth.findOne({email});
     const existingName = await auth.findOne({username});
 
@@ -16,12 +16,12 @@ const signUp = async (req,res)=>{
 
     if(existingName){
         return res.status(400).json({
-            msg: "Username already exists"
+            msg: "Username already in use"
         });
     };
 
     const hashedPassword = await bcrypt.hash(password,10);
-    const signedUp = await auth.create({username:username, email:email, password:hashedPassword});
+    const signedUp = await auth.create({username:username, email:email, password:hashedPassword, role:role});
     res.status(201).json({
         msg:"User successfully created",
         User: signedUp
@@ -42,7 +42,7 @@ const logIn = async (req,res)=>{
         const { username, password } = req.body;
     const existingUser = await auth.findOne({username});
     if(!existingUser){
-        res.status(400).json({
+       return res.status(400).json({
             msg:"User not registered"
         });
     };
@@ -56,17 +56,16 @@ const logIn = async (req,res)=>{
 
     res.status(201).json({
         msg:"User logged In",
-        loggedIn:existingUser
+        role:existingUser.role,
+        username:existingUser.username
     });
     } catch(error){
-        console.log("Something went wrog during log in");
+        console.log("Something went wrong during log in");
         res.status(500).json({
             msg:"Log In failed",
             error: error
         })
     }
-    
-
 };
 
 module.exports = { signUp, logIn }

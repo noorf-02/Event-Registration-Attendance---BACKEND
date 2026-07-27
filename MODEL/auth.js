@@ -16,6 +16,12 @@ const authSchema = new Schema ({
         type:String,
         required:true, 
         minlenght:8,
+    },
+    role:{
+        type:String,
+        enum:['attendee', 'organizer'],
+        required:true,
+        default: 'attendee'
     }
 });
 

@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(router); 
 
 app.get('/',(req,res)=>{
-    res.send('This is my Homepage')
+    res.send('This is my Homepage for events and registration')
 })
 
 app.get('/*path',(req,res)=>{
