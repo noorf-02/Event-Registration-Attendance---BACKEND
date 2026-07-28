@@ -6,11 +6,13 @@ const port = process.env.PORT;
 const cors = require('cors');
 const connectDB = require('./DATABASE CONNECTION/DBconnection');
 connectDB();
-const router = require('./VIEW/auth');
+const authRouter = require('./VIEW/auth');
+const eventRouter = require('./VIEW/event');
 
 app.use(cors());
 app.use(express.json());
-app.use(router); 
+app.use(authRouter); 
+app.use(eventRouter); 
 
 app.get('/',(req,res)=>{
     res.send('This is my Homepage for events and registration')
