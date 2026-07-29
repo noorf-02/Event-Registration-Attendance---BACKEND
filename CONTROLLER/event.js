@@ -13,11 +13,14 @@ const getEvents = async (req,res)=>{
 };
 
 const getSingleEvent = async (req,res)=>{
-    res.send('get Single Event')
+    const singleEvent = await Event.findById(req.params.id);
+    res.send(singleEvent)
 };
 
 const deleteEvent = async (req,res)=>{
-    res.send("Delete Event");
+    const deletedEvent = await Event.findByIdAndDelete(req.params.id);
+    res.send('Event Deleted');
+    console.log('Deleted');
 };
 
 const editEvent = async (req,res)=>{
