@@ -24,7 +24,10 @@ const deleteEvent = async (req,res)=>{
 };
 
 const editEvent = async (req,res)=>{
-    res.send("Edit Event");
+    const id = req.params.id;
+    const body = req.body;
+    const updatedEvent = await Event.findByIdAndUpdate(id,body, {new:true});
+    res.send(updatedEvent); 
 };
 
 module.exports = {createEvent, getEvents, getSingleEvent, deleteEvent, editEvent};
