@@ -12,7 +12,7 @@ const eventRouter = require('./VIEW/event');
 app.use(cors());
 app.use(express.json());
 app.use(authRouter); 
-app.use(eventRouter); 
+app.use("/api/events",eventRouter); 
 
 app.get('/',(req,res)=>{
     res.send('This is my Homepage for events and registration')
