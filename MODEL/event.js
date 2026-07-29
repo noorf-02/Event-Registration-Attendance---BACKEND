@@ -1,55 +1,55 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const eventSchema = new Schema ({
-    tite:{
-     type:String,
-     required:true,
-     maxLength:50,
-     trim:true
-    },
-    description:{
-        type:String,
-        required:true,
-        maxLength:500,
-        trim:true
-    },
-    category:{
-        type:String,
-        enum:["workshop","education","tech","sports","business"],
-        required:true,
-        default:"workshop"
-    },
-    organizer:{
-        type:String,
-        required:true,
-    },
-    venue:{
-    type:String,
-    required:true,
-    },
-    city:{
-        type:String,
-        enum:["Lahore", "Islamabad"],
-        default:"Lahore",
-    },
-    startAt:{
-        type:String,
-        required:true,
-    },
-    endAt:{
-        type:String,
-        required:true,
-    },
-    registerBefore:{
-        type:String,
-        required:true,
-    },
-    capacity:{
-        type:String,
-        required:true,
-    }
+const eventSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+    maxLength: 50,
+    trim: true,
+  },
+  description: {
+    type: String,
+    required: true,
+    maxLength: 500,
+    trim: true,
+  },
+  category: {
+    type: String,
+    enum: ["workshop", "education", "tech", "sports", "business"],
+    required: true,
+    default: "workshop",
+  },
+  organizer: {
+    type: String,
+    required: true,
+  },
+  venue: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    enum: ["Lahore", "Islamabad"],
+    default: "Lahore",
+  },
+  startAt: {
+    type: String,
+    required: true,
+  },
+  endAt: {
+    type: String,
+    required: true,
+  },
+  deadline: {
+    type: String,
+    required: true,
+  },
+  capacity: {
+    type: String,
+    required: true,
+  },
 });
 
-const Event = mongoose.model('Event', eventSchema);
+const Event = mongoose.model("Event", eventSchema);
 module.exports = Event;
