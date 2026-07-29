@@ -12,4 +12,16 @@ const getEvents = async (req,res)=>{
     res.send(data);
 };
 
-module.exports = {createEvent, getEvents};
+const getSingleEvent = async (req,res)=>{
+    res.send('get Single Event')
+};
+
+const deleteEvent = async (req,res)=>{
+    res.send("Delete Event");
+};
+
+const editEvent = async (req,res)=>{
+    res.send("Edit Event");
+};
+
+module.exports = {createEvent, getEvents, getSingleEvent, deleteEvent, editEvent};
